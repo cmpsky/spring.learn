@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cmpsky</groupId>
+	<artifactId>nanlou</artifactId>
+	<packaging>pom</packaging>
+	<!--version>0.0.1-RELEASE</version-->
+	<version>0.0.1-SNAPSHOT</version>
+	<modules>
+		<module>eureka-ha1</module>
+        <module>eureka-ha3</module>
+		<module>cmpsky.base</module>
+	</modules>
+	<name>nanlouTop</name>
+	<description>nanlou project for Spring learn</description>
+	<properties>
+		<java.version>8</java.version>
+		<spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+		<spring-cloud.version>Greenwich.SR4</spring-cloud.version>
+	</properties>
+
+	<!-- 管理依赖 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>2.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>2.1.4.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+	<!--分发管理，把快照版本和发布版本分别deploy到不同的nexus仓库，需要在maven的setting.xml中配置相应的用户名和密码-->
+	<distributionManagement>
+		<repository>
+			<id>local_nexus_releases</id>
+			<name>core Release Repository</name>
+			<url>http://192.168.3.12:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>local_nexus_snapshots</id>
+			<name>core Snapshots Repository</name>
+			<url>http://192.168.3.12:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<!--plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin-->
+		</plugins>
+	</build>
+
+</project>
